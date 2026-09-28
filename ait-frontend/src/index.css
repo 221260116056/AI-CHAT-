@@ -1,0 +1,232 @@
+@import "tailwindcss";
+
+/* ============================================================
+   DESIGN SYSTEM — AIT AI Tools Platform
+   OKLCH color space for perceptually uniform color
+   ============================================================ */
+
+@theme {
+  /* Fonts */
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+
+  /* Border radius */
+  --radius: 0.65rem;
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: var(--radius);
+  --radius-lg: calc(var(--radius) + 4px);
+  --radius-xl: calc(var(--radius) + 8px);
+  --radius-2xl: calc(var(--radius) + 16px);
+
+  /* Animation timings */
+  --duration-fast: 150ms;
+  --duration-normal: 250ms;
+  --duration-slow: 400ms;
+}
+
+@layer base {
+  :root {
+    /* Dark theme (default) */
+    --background: oklch(0.12 0.01 240);
+    --background-secondary: oklch(0.16 0.012 240);
+    --background-tertiary: oklch(0.20 0.012 240);
+    --foreground: oklch(0.95 0.005 240);
+    --foreground-muted: oklch(0.65 0.015 240);
+
+    --border: oklch(0.25 0.015 240);
+    --border-subtle: oklch(0.20 0.01 240);
+
+    --primary: oklch(0.65 0.25 265);
+    --primary-foreground: oklch(0.98 0.005 265);
+    --primary-hover: oklch(0.70 0.25 265);
+    --primary-glow: oklch(0.65 0.25 265 / 0.3);
+
+    --secondary: oklch(0.22 0.015 240);
+    --secondary-foreground: oklch(0.85 0.01 240);
+    --secondary-hover: oklch(0.26 0.015 240);
+
+    --accent: oklch(0.70 0.22 200);
+    --accent-foreground: oklch(0.10 0.01 200);
+
+    --success: oklch(0.70 0.18 145);
+    --warning: oklch(0.78 0.18 70);
+    --error: oklch(0.65 0.22 25);
+    --info: oklch(0.70 0.18 225);
+
+    --card: oklch(0.15 0.012 240);
+    --card-foreground: oklch(0.92 0.005 240);
+    --card-hover: oklch(0.18 0.012 240);
+
+    --input: oklch(0.20 0.012 240);
+    --input-border: oklch(0.28 0.015 240);
+    --input-focus: oklch(0.65 0.25 265);
+
+    --ring: oklch(0.65 0.25 265 / 0.5);
+
+    --sidebar-width: 260px;
+    --header-height: 64px;
+  }
+
+  .light {
+    --background: oklch(0.98 0.003 240);
+    --background-secondary: oklch(0.94 0.005 240);
+    --background-tertiary: oklch(0.90 0.007 240);
+    --foreground: oklch(0.12 0.01 240);
+    --foreground-muted: oklch(0.45 0.015 240);
+
+    --border: oklch(0.82 0.01 240);
+    --border-subtle: oklch(0.88 0.008 240);
+
+    --primary: oklch(0.55 0.25 265);
+    --primary-foreground: oklch(0.98 0.005 265);
+    --primary-hover: oklch(0.50 0.25 265);
+    --primary-glow: oklch(0.55 0.25 265 / 0.2);
+
+    --secondary: oklch(0.92 0.008 240);
+    --secondary-foreground: oklch(0.25 0.01 240);
+    --secondary-hover: oklch(0.88 0.01 240);
+
+    --card: oklch(1 0 0);
+    --card-foreground: oklch(0.15 0.01 240);
+    --card-hover: oklch(0.97 0.003 240);
+
+    --input: oklch(0.98 0.002 240);
+    --input-border: oklch(0.78 0.01 240);
+  }
+
+  * {
+    border-color: var(--border);
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-sans);
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  /* Scrollbar styling */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--border);
+    border-radius: 999px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--foreground-muted);
+  }
+
+  /* Focus ring */
+  :focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+  }
+
+  /* Selection */
+  ::selection {
+    background: var(--primary-glow);
+    color: var(--primary-foreground);
+  }
+}
+
+/* ============================================================
+   COMPONENT UTILITIES
+   ============================================================ */
+
+@layer components {
+  /* Glassmorphism card */
+  .glass-card {
+    background: oklch(from var(--card) l c h / 0.8);
+    backdrop-filter: blur(12px);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+  }
+
+  /* Gradient text */
+  .gradient-text {
+    background: linear-gradient(135deg, var(--primary), var(--accent));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Primary glow effect */
+  .glow-primary {
+    box-shadow: 0 0 20px var(--primary-glow), 0 0 40px var(--primary-glow);
+  }
+
+  /* Animated gradient border */
+  .gradient-border {
+    position: relative;
+    border-radius: var(--radius-lg);
+  }
+  .gradient-border::before {
+    content: "";
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    background: linear-gradient(135deg, var(--primary), var(--accent), var(--primary));
+    background-size: 200% 200%;
+    animation: gradient-shift 4s ease infinite;
+    z-index: -1;
+  }
+  @keyframes gradient-shift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  /* Smooth fade-in animation */
+  .animate-fade-in {
+    animation: fade-in var(--duration-normal) ease-out;
+  }
+  @keyframes fade-in {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Pulse dot */
+  .pulse-dot::before {
+    content: "";
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--success);
+    animation: pulse 2s infinite;
+    margin-right: 6px;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.8); }
+  }
+
+  /* Typing indicator */
+  .typing-dots span {
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--foreground-muted);
+    animation: typing 1.2s infinite;
+  }
+  .typing-dots span:nth-child(2) { animation-delay: 0.2s; }
+  .typing-dots span:nth-child(3) { animation-delay: 0.4s; }
+  @keyframes typing {
+    0%, 60%, 100% { transform: translateY(0); opacity: 0.4; }
+    30% { transform: translateY(-6px); opacity: 1; }
+  }
+}

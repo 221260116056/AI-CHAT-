@@ -1,0 +1,11 @@
+{
+  "name": "ai-chatbot-monorepo",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "bun run dev.ts",
+    "start": "bun run dev.ts",
+    "build:frontend": "cd ait-frontend && bun run build",
+    "build:backend": "cd ait-backend && bun run build"
+  }
+}
